@@ -93,11 +93,12 @@ export const ChaptersList = ({
 
                                         </div>
                                         {chapter.title}
-                                        <div className=" ml-auto pr-2 flex items-center gap-x-2">
+                                        <div className=" ml-auto pr-2 flex items-center gap-x-2 ">
                                             {chapter.isFree && (
-                                                <Badge color="green">Free</Badge>
+                                                // <Badge className="  bg-emerald-200 text-emerald-700 border-emerald-300 hover:bg-emerald-200"> Free </Badge>
+                                                <Badge className=" bg-slate-800 text-slate-200 hover:bg-slate-700 border-slate-800"> Free </Badge>
                                             )}
-                                            <Badge color={chapter.isPublished ? "sky" : "slate"}>
+                                            <Badge className={chapter.isPublished  ? " bg-sky-200 text-sky-700 border-sky-300 hover:bg-sky-200" : " bg-slate-300 text-slate-700 hover:bg-slate-300 border-slate-400"}>
                                             {chapter.isPublished ? "Published" : " Draft"}
                                             </Badge>
                                             <Pencil 

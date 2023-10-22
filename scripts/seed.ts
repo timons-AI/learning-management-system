@@ -53,3 +53,6 @@ async function main() {
 }
 
 main();
+
+// Run command to seed the database
+// npx ts-node scripts/seed.ts

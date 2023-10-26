@@ -41,7 +41,7 @@ export const CategoryItem = ({
             type="button"
         >
             {Icon && <Icon size={20} />}
-            <span className=" text-sm font-medium">
+            <span className=" text-sm font-medium whitespace-nowrap" >
                 {label}
             </span>
         </button>

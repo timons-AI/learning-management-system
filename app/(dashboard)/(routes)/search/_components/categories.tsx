@@ -46,7 +46,7 @@ interface CategoriesProps {
 }
 
 const iconMap: Record<Category["name"], IconType> = {
-    "Computer Science": FcSupport,
+    "Comupter Science": FcMultipleDevices,
     "Mathematics": FcPositiveDynamic,
     "Physics": FcSurvey,
     "Chemistry": FcSalesPerformance,

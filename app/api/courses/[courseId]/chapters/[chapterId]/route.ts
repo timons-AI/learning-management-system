@@ -123,33 +123,28 @@ export async function PATCH(
       },
     });
 
-    console.log("{}Chapter has been updated");
-
     if (values.videoUrl) {
       const existingMuxData = await db.muxData.findFirst({
         where: {
           chapterId: params.chapterId,
         },
       });
-      console.log("There is an existing video", existingMuxData);
 
       if (existingMuxData) {
-        await Video.Assets.del(existingMuxData.assetId);
+        // reminder to uncomment this in production to delete the old asset
+        // await Video.Assets.del(existingMuxData.assetId);
         await db.muxData.delete({
           where: {
             id: existingMuxData.id,
           },
         });
       }
-      console.log("We are deleting that video", existingMuxData);
 
       const asset = await Video.Assets.create({
         input: values.videoUrl,
         playback_policy: "public",
         test: false,
       });
-
-      console.log("we are creating a new asset", asset);
 
       await db.muxData.create({
         data: {
@@ -159,8 +154,6 @@ export async function PATCH(
         },
       });
     }
-
-    console.log("we have added that asset to muxData table");
 
     return NextResponse.json(chapter);
   } catch (error) {

@@ -1,21 +1,19 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Course } from "@prisma/client"
-import { ColumnDef } from "@tanstack/react-table"
+import { Course } from "@prisma/client";
+import { ColumnDef } from "@tanstack/react-table";
+import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react";
+import Link from "next/link";
 
-import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react"
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/dropdown-menu";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 export const columns: ColumnDef<Course>[] = [
   {
@@ -29,7 +27,7 @@ export const columns: ColumnDef<Course>[] = [
           Title
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
   },
   {
@@ -43,7 +41,7 @@ export const columns: ColumnDef<Course>[] = [
           Price
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
     cell: ({ row }) => {
       const price = parseFloat(row.getValue("price") || "0");
@@ -52,9 +50,8 @@ export const columns: ColumnDef<Course>[] = [
         currency: "USD",
       }).format(price);
 
-      return <span>{formatted}</span>
-    }
-    
+      return <div>{formatted}</div>;
+    },
   },
   {
     accessorKey: "isPublished",
@@ -64,19 +61,20 @@ export const columns: ColumnDef<Course>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          isPublished
+          Published
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
     cell: ({ row }) => {
       const isPublished = row.getValue("isPublished") || false;
+
       return (
-        <Badge  className={cn(isPublished ? "bg-sky-700" : "bg-slate-500")}>
+        <Badge className={cn("bg-slate-500", isPublished && "bg-sky-700")}>
           {isPublished ? "Published" : "Draft"}
         </Badge>
-      )
-    }
+      );
+    },
   },
   {
     id: "actions",
@@ -85,8 +83,8 @@ export const columns: ColumnDef<Course>[] = [
 
       return (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild >
-            <Button variant="ghost" className=" h-4 w-8 p-0">
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-4 w-8 p-0">
               <span className="sr-only">Open menu</span>
               <MoreHorizontal className="h-4 w-4" />
             </Button>
@@ -94,14 +92,13 @@ export const columns: ColumnDef<Course>[] = [
           <DropdownMenuContent align="end">
             <Link href={`/teacher/courses/${id}`}>
               <DropdownMenuItem>
-                <Pencil className="h-4 w-4 mr-2 " /> 
+                <Pencil className="h-4 w-4 mr-2" />
                 Edit
               </DropdownMenuItem>
             </Link>
-            
           </DropdownMenuContent>
         </DropdownMenu>
-      )
-    }
-  }
-]
+      );
+    },
+  },
+];

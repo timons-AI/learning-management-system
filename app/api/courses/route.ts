@@ -9,7 +9,10 @@ export async function POST(req: Request) {
     const { title } = await req.json();
 
     if (!userId || !isTeacher(userId)) {
-      return new NextResponse("Unauthorized", { status: 401 });
+      return new NextResponse(
+        "Unauthorized: Only teachers can create courses",
+        { status: 401 }
+      );
     }
 
     const course = await db.course.create({
@@ -22,6 +25,8 @@ export async function POST(req: Request) {
     return NextResponse.json(course);
   } catch (error) {
     console.log("[COURSES]", error);
-    return new NextResponse("Internal Error", { status: 500 });
+    return new NextResponse("Internal Error: Failed to create course", {
+      status: 500,
+    });
   }
 }

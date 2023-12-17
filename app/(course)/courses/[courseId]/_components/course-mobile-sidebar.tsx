@@ -10,6 +10,7 @@ import { useMobileCourseSidebar } from "@/hooks/use-mobile-course-sidebar";
 import { Button } from "@/components/ui/button";
 
 interface CourseMobileSidebarProps {
+  userId: string;
   course: Course & {
     chapters: (Chapter & {
       userProgress: UserProgress[] | null;
@@ -19,6 +20,7 @@ interface CourseMobileSidebarProps {
 }
 
 export const CourseMobileSidebar = ({
+  userId,
   course,
   progressCount,
 }: CourseMobileSidebarProps) => {
@@ -54,7 +56,11 @@ export const CourseMobileSidebar = ({
             <Menu/>
         </SheetTrigger> */}
         <SheetContent side="left" className=" p-2 pt-10">
-          <CourseSidebar course={course} progressCount={progressCount} />
+          <CourseSidebar
+            userId={userId}
+            course={course}
+            progressCount={progressCount}
+          />
         </SheetContent>
       </Sheet>
     </>

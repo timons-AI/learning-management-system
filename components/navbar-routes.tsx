@@ -12,11 +12,11 @@ export const NavbarRoutes = () => {
 
   const isTeacherPage = pathname?.startsWith("/teacher");
   const isPlayerPage = pathname?.includes("/courses");
-  const isSearchPage = pathname === "/search";
+  const isSearchPage = pathname === "/";
   const { userId } = useAuth();
 
   return (
-    <>
+    <div className=" flex items-center">
       <div className="p-6 flex">
         <Logo />
       </div>
@@ -42,6 +42,6 @@ export const NavbarRoutes = () => {
         ) : null}
         <UserButton afterSignOutUrl="/" />
       </div>
-    </>
+    </div>
   );
 };

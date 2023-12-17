@@ -16,7 +16,7 @@ export const NavbarRoutes = () => {
   const { userId } = useAuth();
 
   return (
-    <div className=" flex items-center justify-between">
+    <div className=" flex items-center  justify-between w-full">
       <div className="p-6 flex">
         <Logo />
       </div>
@@ -25,7 +25,7 @@ export const NavbarRoutes = () => {
           <SearchInput />
         </div>
       )}
-      <div className=" flex gap-x-2 ml-auto">
+      <div className=" flex gap-x-2 ">
         {isTeacherPage || isPlayerPage ? (
           <Link href="/">
             <Button size="sm" variant="ghost">

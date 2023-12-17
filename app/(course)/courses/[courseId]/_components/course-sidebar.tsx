@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { auth } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 import { Chapter, Course, UserProgress } from "@prisma/client";
 import { CourseSidebarItem } from "./course-sidebar-item";
 import { CourseProgress } from "@/components/course-progress";
@@ -16,7 +16,15 @@ export const CourseSidebar = async ({
   course,
   progressCount,
 }: CourseSidebarProps) => {
-  const { userId } = auth();
+  const {
+    userId,
+    // sessionId,
+    // getToken,
+    // isLoaded,
+    // isSignedIn,
+    // signOut
+  } = useAuth();
+  // const { userId } = auth();
 
   if (!userId) {
     return null;

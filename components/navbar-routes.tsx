@@ -16,7 +16,7 @@ export const NavbarRoutes = () => {
   const { userId } = useAuth();
 
   return (
-    <div className=" flex items-center">
+    <div className=" flex items-center justify-between">
       <div className="p-6 flex">
         <Logo />
       </div>

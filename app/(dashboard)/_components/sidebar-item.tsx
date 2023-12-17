@@ -29,15 +29,15 @@ export const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
       onClick={onClick}
       type="button"
       className={cn(
-        "flex h-fit items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20 mx-3 rounded-xl",
+        "flex h-fit items-center gap-x-2 text-foreground text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20 mx-3 rounded-xl",
         isActive &&
-          "text-sky-700 bg-sky-200/20 hover:bg-sky-200/20 hover:text-sky-700"
+          " text-primary bg-primary/10  hover:bg-primary/10 hover:text-primary/60"
       )}
     >
-      <div className="flex items-center gap-x-2 py-4">
+      <div className="flex items-center gap-x-2 py-3">
         <Icon
           size={22}
-          className={cn("text-slate-500", isActive && "text-sky-700")}
+          className={cn(" text-foreground", isActive && "text-primary/80")}
         />
         {label}
       </div>

@@ -6,6 +6,7 @@ import { LogOut } from "lucide-react";
 import Link from "next/link";
 import { SearchInput } from "./search-input";
 import { isTeacher } from "@/lib/teacher";
+import { Logo } from "@/app/(dashboard)/_components/logo";
 export const NavbarRoutes = () => {
   const pathname = usePathname();
 
@@ -16,6 +17,9 @@ export const NavbarRoutes = () => {
 
   return (
     <>
+      <div className="p-6 flex">
+        <Logo />
+      </div>
       {isSearchPage && (
         <div className=" hidden md:block">
           <SearchInput />

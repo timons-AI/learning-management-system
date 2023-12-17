@@ -1,12 +1,12 @@
 import Image from "next/image";
 
 export const Logo = () => {
-    return ( 
-            <Image 
-                src="/next.svg" 
-                width={130} 
-                height={130}
-                alt="logo"
-             />
-     );
-}
+  return (
+    <div className="flex items-center justify-center">
+      <Image src="/logo.png" width={60} height={60} alt="logo" />
+      <h1 className="text-center mt-5 text-2xl font-bold text-gray-800">
+        OLYMPUS
+      </h1>
+    </div>
+  );
+};

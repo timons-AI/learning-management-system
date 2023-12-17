@@ -1,6 +1,6 @@
 "use client";
 import { Menu } from "lucide-react";
-import { Chapter, Course, UserProgress } from "@prisma/client";
+import { Chapter, Course, Purchase, UserProgress } from "@prisma/client";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 import { CourseSidebar } from "./course-sidebar";
@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 
 interface CourseMobileSidebarProps {
   userId: string;
+  purchase: Purchase | null;
   course: Course & {
     chapters: (Chapter & {
       userProgress: UserProgress[] | null;
@@ -21,6 +22,7 @@ interface CourseMobileSidebarProps {
 
 export const CourseMobileSidebar = ({
   userId,
+  purchase,
   course,
   progressCount,
 }: CourseMobileSidebarProps) => {
@@ -57,6 +59,7 @@ export const CourseMobileSidebar = ({
         </SheetTrigger> */}
         <SheetContent side="left" className=" p-2 pt-10">
           <CourseSidebar
+            purchase={purchase}
             userId={userId}
             course={course}
             progressCount={progressCount}

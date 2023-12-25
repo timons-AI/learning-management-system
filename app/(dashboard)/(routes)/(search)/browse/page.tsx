@@ -6,7 +6,7 @@ import { SearchInput } from "@/components/search-input";
 import { getCourses } from "@/actions/get-courses";
 import { CoursesList } from "@/components/courses-list";
 
-import { Categories } from "./_components/categories";
+import { Categories } from "../_components/categories";
 
 interface SearchPageProps {
   searchParams: {
@@ -18,9 +18,9 @@ interface SearchPageProps {
 const SearchPage = async ({ searchParams }: SearchPageProps) => {
   const { userId } = auth();
 
-  if (!userId) {
-    return redirect("/");
-  }
+  // if (!userId) {
+  //   return redirect("/");
+  // }
 
   const categories = await db.category.findMany({
     orderBy: {

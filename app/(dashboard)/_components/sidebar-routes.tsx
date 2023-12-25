@@ -1,11 +1,25 @@
 "use client";
 
+import { useAuth } from "@clerk/nextjs";
 import { BarChart, Compass, Layout, List } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { SidebarItem } from "./sidebar-item";
 
 const guestRoutes = [
+  // {
+  //   icon: Layout,
+  //   label: "Dashboard",
+  //   href: "/dashboard",
+  // },
+  {
+    icon: Compass,
+    label: "Browse",
+    href: "/browse",
+  },
+];
+
+const studentRoutes = [
   {
     icon: Layout,
     label: "Dashboard",
@@ -14,7 +28,7 @@ const guestRoutes = [
   {
     icon: Compass,
     label: "Browse",
-    href: "/",
+    href: "/browse",
   },
 ];
 
@@ -32,11 +46,16 @@ const teacherRoutes = [
 ];
 
 export const SidebarRoutes = () => {
+  const { userId } = useAuth();
+
   const pathname = usePathname();
 
   const isTeacherPage = pathname?.includes("/teacher");
 
-  const routes = isTeacherPage ? teacherRoutes : guestRoutes;
+  const loggedInRoutes = isTeacherPage ? teacherRoutes : studentRoutes;
+
+  // if user is not logged in, show guest routes
+  const routes = userId ? loggedInRoutes : guestRoutes;
 
   return (
     <div className="flex flex-col w-full space-y-2">

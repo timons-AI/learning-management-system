@@ -12,7 +12,7 @@ export const NavbarRoutes = () => {
 
   const isTeacherPage = pathname?.startsWith("/teacher");
   const isPlayerPage = pathname?.includes("/courses");
-  const isSearchPage = pathname === "/";
+  const isSearchPage = pathname === "/browse";
   const { userId } = useAuth();
 
   return (
@@ -40,6 +40,13 @@ export const NavbarRoutes = () => {
             </Button>
           </Link>
         ) : null}
+        {!userId && (
+          <Link href="/login">
+            <Button size="sm" variant="outline">
+              Login / Sign Up
+            </Button>
+          </Link>
+        )}
         <UserButton afterSignOutUrl="/" />
       </div>
     </div>

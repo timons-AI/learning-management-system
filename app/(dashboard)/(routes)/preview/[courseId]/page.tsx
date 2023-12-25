@@ -85,13 +85,30 @@ const PreviewCourse = async ({ params }: { params: { courseId: string } }) => {
 
       <div className="  flex-grow flex flex-col gap-4 md:col-span-2">
         <div className="border rounded-md p-4 w-full flex flex-col gap-2  items-center h-[40%]  justify-center ">
-          <h1>Enroll Now and Start learning</h1>
-          <p className="text-sm text-muted-foreground">
-            Get access to all the courses
-          </p>
-          <Link href={`/courses/${course.id}/chapters/${chapter.id}`}>
-            <Button>Enroll Now or Continue Learning</Button>
-          </Link>
+          {progressCount ? (
+            <div className=" flex flex-col items-center justify-center space-y-2">
+              <h1>Continue from where you stopped</h1>
+              <p className="text-sm text-muted-foreground">
+                You have completed {progressCount}% of this course.
+              </p>
+              <Link
+                // className=" w-full"
+                href={`/courses/${course.id}/chapters/${chapter.id}`}
+              >
+                <Button variant="default">Continue Learning </Button>
+              </Link>
+            </div>
+          ) : (
+            <div className=" flex flex-col items-center justify-center space-y-2">
+              <h1>Enroll Now and Start learning</h1>
+              <p className="text-sm text-muted-foreground">
+                Get access to all the courses
+              </p>
+              <Link href={`/courses/${course.id}/chapters/${chapter.id}`}>
+                <Button>Enroll Now </Button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

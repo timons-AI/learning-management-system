@@ -1,7 +1,15 @@
 "use client";
 
 import { useAuth } from "@clerk/nextjs";
-import { BarChart, Compass, Layout, List, Video } from "lucide-react";
+import {
+  BarChart,
+  Compass,
+  Film,
+  Layout,
+  List,
+  PlaySquare,
+  Video,
+} from "lucide-react";
 import { usePathname } from "next/navigation";
 import { use, useEffect, useState } from "react";
 import { usePreviewStore } from "@/hooks/use-preview";
@@ -85,7 +93,7 @@ export const SidebarRoutes = () => {
       ))}
       {isPreview && ( // Conditionally render the preview routes only when isPreviewRoute is true
         <>
-          <SidebarItem icon={Layout} label="Preview " href="/preview" />
+          <SidebarItem icon={Film} label="Preview " href="/preview" />
         </>
       )}
     </div>

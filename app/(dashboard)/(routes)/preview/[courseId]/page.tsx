@@ -57,61 +57,64 @@ const PreviewCourse = async ({ params }: { params: { courseId: string } }) => {
   const isLocked = !chapter.isFree && !purchase;
 
   return (
-    <div className=" p-4 space-x-4 flex w-full">
-      <div className="col-span-2 md:col-span-1 flex flex-col w-[60%] space-y-4">
-        <PreviewVideoPlayer
-          title={chapter.title}
-          playbackId={muxData?.playbackId!}
-          isLocked={isLocked}
-        />
+    <>
+      <h1 className=" text-center p-2 text-xl font-semibold">Course Preview</h1>
+      <div className=" p-4 md:space-x-2 gap-2 flex flex-col md:flex-row w-full">
+        <div className="col-span-2 md:col-span-1 flex flex-col w-full md:w-[60%]  gap-3">
+          <PreviewVideoPlayer
+            title={chapter.title}
+            playbackId={muxData?.playbackId!}
+            isLocked={isLocked}
+          />
 
-        <div className=" p-3 border rounded-md">
-          <h1 className="text-xll font-semibold mb-4">{course.title}</h1>
-          <p className="mb-4 text-sm text-muted-foreground">
-            {course.description}
-          </p>
-          <div className=" w-fit flex gap-2 text-sm">
-            <IconBadge icon={Book} size="sm" /> {course.chapters.length}{" "}
-            Chapters
+          <div className=" p-3 border rounded-md">
+            <h1 className="text-xll font-semibold mb-4">{course.title}</h1>
+            <p className="mb-4 text-sm text-muted-foreground">
+              {course.description}
+            </p>
+            <div className=" w-fit flex gap-2 text-sm">
+              <IconBadge icon={Book} size="sm" /> {course.chapters.length}{" "}
+              Chapters
+            </div>
+
+            {progressCount && (
+              <div className=" m-2">
+                <CourseProgress variant="default" value={progressCount} />
+              </div>
+            )}
           </div>
+        </div>
 
-          {progressCount && (
-            <div className=" m-2">
-              <CourseProgress variant="default" value={progressCount} />
-            </div>
-          )}
+        <div className="  flex flex-col gap-4 flex-grow">
+          <div className="border rounded-md p-4 w-full flex flex-col gap-2 mt-2 items-center h-[40%]  justify-center ">
+            {progressCount ? (
+              <div className=" flex flex-col items-center justify-center space-y-2">
+                <h1>Continue from where you stopped</h1>
+                <p className="text-sm text-muted-foreground">
+                  You have completed {progressCount}% of this course.
+                </p>
+                <Link
+                  // className=" w-full"
+                  href={`/courses/${course.id}/chapters/${chapter.id}`}
+                >
+                  <Button variant="default">Continue Learning </Button>
+                </Link>
+              </div>
+            ) : (
+              <div className=" flex flex-col items-center justify-center space-y-2">
+                <h1>Enroll Now and Start learning</h1>
+                <p className="text-sm text-muted-foreground">
+                  Get access to all the courses
+                </p>
+                <Link href={`/courses/${course.id}/chapters/${chapter.id}`}>
+                  <Button>Enroll Now </Button>
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-
-      <div className="  flex-grow flex flex-col gap-4 md:col-span-2">
-        <div className="border rounded-md p-4 w-full flex flex-col gap-2  items-center h-[40%]  justify-center ">
-          {progressCount ? (
-            <div className=" flex flex-col items-center justify-center space-y-2">
-              <h1>Continue from where you stopped</h1>
-              <p className="text-sm text-muted-foreground">
-                You have completed {progressCount}% of this course.
-              </p>
-              <Link
-                // className=" w-full"
-                href={`/courses/${course.id}/chapters/${chapter.id}`}
-              >
-                <Button variant="default">Continue Learning </Button>
-              </Link>
-            </div>
-          ) : (
-            <div className=" flex flex-col items-center justify-center space-y-2">
-              <h1>Enroll Now and Start learning</h1>
-              <p className="text-sm text-muted-foreground">
-                Get access to all the courses
-              </p>
-              <Link href={`/courses/${course.id}/chapters/${chapter.id}`}>
-                <Button>Enroll Now </Button>
-              </Link>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
 

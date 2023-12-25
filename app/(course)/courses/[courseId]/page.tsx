@@ -1,15 +1,10 @@
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
-import { auth } from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-export const PreviewCourse = async ({
+export const CourseIdPage = async ({
   params,
 }: {
   params: { courseId: string };
 }) => {
-  const { userId } = auth();
-
   const course = await db.course.findUnique({
     where: {
       id: params.courseId,
@@ -29,17 +24,8 @@ export const PreviewCourse = async ({
   if (!course) {
     return redirect("/");
   }
-  //   return redirect(`/courses/${course.id}/chapters/${course.chapters[0].id}`);
-  return (
-    <div>
-      <h1>Preview Course</h1>
-      <p>{course.title}</p>
-      {userId && <p>{userId}</p>}
-      <Link href={`/courses/${course.id}/chapters/${course.chapters[0].id}`}>
-        <Button>Start Course</Button>
-      </Link>
-    </div>
-  );
+  // return redirect(`/courses/${course.id}/chapters/${course.chapters[0].id}`);
+  return redirect(`/courses/preview/${course.id}`);
 };
 
-export default PreviewCourse;
+export default CourseIdPage;

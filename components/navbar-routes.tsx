@@ -41,7 +41,7 @@ export const NavbarRoutes = () => {
           </Link>
         ) : null}
         {!userId && (
-          <Link href="/login">
+          <Link href="/dashboard">
             <Button size="sm" variant="outline">
               Login / Sign Up
             </Button>

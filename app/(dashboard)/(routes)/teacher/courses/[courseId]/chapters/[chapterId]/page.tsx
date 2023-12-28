@@ -59,15 +59,15 @@ const ChapterIdPage = async ({
       <div className="p-6">
         <div className="flex items-center justify-between">
           <div className="w-full">
-            <Button variant="outline" className=" m-3">
-              <Link
-                href={`/teacher/courses/${params.courseId}`}
+            <Link href={`/teacher/courses/${params.courseId}`}>
+              <Button
+                variant="outline"
                 className="flex items-center text-sm hover:opacity-75 transition mb-6"
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to course setup
-              </Link>
-            </Button>
+              </Button>
+            </Link>
             <div className="flex items-center justify-between w-full">
               <div className="flex flex-col gap-y-2">
                 <h1 className="text-2xl font-medium">Chapter Creation</h1>

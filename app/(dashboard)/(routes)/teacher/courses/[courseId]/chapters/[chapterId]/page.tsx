@@ -12,6 +12,7 @@ import { ChapterDescriptionForm } from "./_components/chapter-description-form";
 import { ChapterAccessForm } from "./_components/chapter-access-form";
 import { ChapterActions } from "./_components/chapter-actions";
 import { ChapterVideoForm } from "./_components/chapter-video-form";
+import { Button } from "@/components/ui/button";
 
 const ChapterIdPage = async ({
   params,
@@ -58,13 +59,15 @@ const ChapterIdPage = async ({
       <div className="p-6">
         <div className="flex items-center justify-between">
           <div className="w-full">
-            <Link
-              href={`/teacher/courses/${params.courseId}`}
-              className="flex items-center text-sm hover:opacity-75 transition mb-6"
-            >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to course setup
-            </Link>
+            <Button variant="outline" className=" m-3">
+              <Link
+                href={`/teacher/courses/${params.courseId}`}
+                className="flex items-center text-sm hover:opacity-75 transition mb-6"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to course setup
+              </Link>
+            </Button>
             <div className="flex items-center justify-between w-full">
               <div className="flex flex-col gap-y-2">
                 <h1 className="text-2xl font-medium">Chapter Creation</h1>

@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Book, Loader2, Lock } from "lucide-react";
+import { Book, CheckCircle, Loader2, Lock } from "lucide-react";
 import { IconBadge } from "@/components/icon-badge";
 
 import { getPreview } from "@/actions/get-preview";
@@ -77,17 +77,27 @@ const PreviewCourse = async ({ params }: { params: { courseId: string } }) => {
               Chapters
             </div>
 
-            {progressCount && (
-              <div className=" m-2">
-                <CourseProgress variant="default" value={progressCount} />
+            {progressCount &&
+            progressCount > 0 &&
+            progressCount !== 0 &&
+            !isLocked ? (
+              <div className="flex flex-col gap-2">
+                <div className=" w-fit flex gap-2 text-sm">
+                  <IconBadge icon={CheckCircle} size="sm" /> {progressCount}%{" "}
+                  Completed
+                </div>
+
+                <div className=" m-2">
+                  <CourseProgress variant="default" value={progressCount} />
+                </div>
               </div>
-            )}
+            ) : null}
           </div>
         </div>
 
         <div className="  flex flex-col gap-4 flex-grow">
           <div className="border rounded-md p-4 w-full flex flex-col gap-2 mt-2 items-center h-[40%]  justify-center ">
-            {progressCount ? (
+            {isLocked ? (
               <div className=" flex flex-col items-center justify-center space-y-2">
                 <h1>Continue from where you stopped</h1>
                 <p className="text-sm text-muted-foreground">

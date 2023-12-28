@@ -41,5 +41,7 @@ export const CourseEnrollButton = ({
     >
       Enroll for {formatPrice(price)}
     </Button>
+    // TODO : add model for enroll button that has 2 options for check out and enroll
+    // create api for those 2 options
   );
 };

@@ -117,3 +117,30 @@ model StripeCustomer {
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
+
+// will be populated with seed.ts periodically meaning only add new tokens to the end of the list
+
+model Token {
+  id            String   @id @default(uuid())
+  userId        String?
+  tokenCustomer String // this can be a user name email, or id 
+  token         String   @unique
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// rules for tokens 
+// token can only be used once
+// token can only be used by one user
+// token can only be used for one course
+// once the userId is assigned to the token, the token cannot be used again
+// when the token is used, the user is assigned to the token, and the token is marked as used
+// when the token is used, the user is assigned to the purchase, and the course is added to purchase table 
+// validation to check if the token is valid, if it is valid, then the user can use it to purchase the course
+
+// example token data json would be 
+// {
+//   "token": "123456",
+//   "userId": "123456",
+//   "courseId": "123456"
+// }

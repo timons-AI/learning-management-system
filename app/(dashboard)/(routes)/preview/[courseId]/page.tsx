@@ -55,6 +55,10 @@ const PreviewCourse = async ({ params }: { params: { courseId: string } }) => {
   const progressCount = userId && (await getProgress(userId, course.id));
 
   const isLocked = !chapter.isFree && !purchase;
+  // assign progress to 0 if null or undefined
+  // if (progressCount == null || undefined) {
+  //   const progressCount = 0;
+  // }
 
   return (
     <>
@@ -77,17 +81,17 @@ const PreviewCourse = async ({ params }: { params: { courseId: string } }) => {
               Chapters
             </div>
 
-            {progressCount &&
-            progressCount > 0 &&
-            progressCount !== 0 &&
-            !isLocked ? (
+            {/* {JSON.stringify(purchase)} */}
+
+            {purchase ? (
               <div className="flex flex-col gap-2">
-                <div className=" w-fit flex gap-2 text-sm">
+                {/* <div className=" w-fit flex gap-2 text-sm">
                   <IconBadge icon={CheckCircle} size="sm" /> {progressCount}%{" "}
                   Completed
-                </div>
+                </div> */}
 
                 <div className=" m-2">
+                  {/* @ts-ignore */}
                   <CourseProgress variant="default" value={progressCount} />
                 </div>
               </div>
@@ -97,7 +101,7 @@ const PreviewCourse = async ({ params }: { params: { courseId: string } }) => {
 
         <div className="  flex flex-col gap-4 flex-grow">
           <div className="border rounded-md p-4 w-full flex flex-col gap-2 mt-2 items-center h-[40%]  justify-center ">
-            {isLocked ? (
+            {purchase ? (
               <div className=" flex flex-col items-center justify-center space-y-2">
                 <h1>Continue from where you stopped</h1>
                 <p className="text-sm text-muted-foreground">

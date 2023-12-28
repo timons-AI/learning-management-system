@@ -105,7 +105,9 @@ const PreviewCourse = async ({ params }: { params: { courseId: string } }) => {
               <div className=" flex flex-col items-center justify-center space-y-2">
                 <h1>Continue from where you stopped</h1>
                 <p className="text-sm text-muted-foreground">
-                  You have completed {progressCount}% of this course.
+                  {/* @ts-ignore */}
+                  You have completed {Math.round(progressCount)}% of this
+                  course.
                 </p>
                 <Link
                   // className=" w-full"

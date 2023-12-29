@@ -54,6 +54,11 @@ export async function POST(
       return new NextResponse("Invalid token", { status: 400 });
     }
 
+    if (tokenCheck.userId) {
+      // console.log("[COURSE_ID_CHECKOUT] the token is already used");
+      return new NextResponse("Token already used", { status: 400 });
+    }
+
     console.log("[COURSE_ID_CHECKOUT]", tokenCheck);
     // update the token table to add the user id
     await db.token.update({
